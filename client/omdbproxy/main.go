@@ -56,13 +56,13 @@ func main() {
 	log.Printf("%+v\n", getMovieByIDResp)
 	log.Println("")
 
-	// log.Println("calling SearchMovies")
-	// searchMoviesResp, err := clientStub.SearchMovies(ctx, searchMoviesReq_happyPath)
-	// if err != nil {
-	// 	log.Fatalf("error calling SearchMovies: %v", err)
-	// }
-	// log.Printf("%+v\n", searchMoviesResp)
-	// log.Println("")
+	log.Println("calling SearchMovies")
+	searchMoviesResp, err := clientStub.SearchMovies(ctx, searchMoviesReq_happyPath)
+	if err != nil {
+		log.Fatalf("error calling SearchMovies: %v", err)
+	}
+	log.Printf("%+v\n", searchMoviesResp)
+	log.Println("")
 
 	log.Println("terminating client")
 }

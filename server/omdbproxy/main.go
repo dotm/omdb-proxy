@@ -334,8 +334,8 @@ func (s *omdbProxyServer) GetMovieByID(
 	}, nil
 }
 
-func loadEnv() {
-	viper.SetConfigFile(".env")
+func loadEnv(configFileLocation string) {
+	viper.SetConfigFile(configFileLocation)
 
 	if err := viper.ReadInConfig(); err != nil {
 		fmt.Printf("error reading config file: %v\n", err)
@@ -345,7 +345,7 @@ func loadEnv() {
 
 func main() {
 	flag.Parse()
-	loadEnv()
+	loadEnv(".env")
 
 	listener, err := net.Listen("tcp", fmt.Sprintf("localhost:%d", *port))
 	if err != nil {
