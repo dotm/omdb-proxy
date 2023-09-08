@@ -1,0 +1,50 @@
+//protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative services/omdbproxy/omdb_proxy.proto
+
+syntax = "proto3";
+
+package omdb;
+
+option go_package = "github.com/dotm/omdb-proxy/services/omdbproxy/omdb_proxy";
+
+service OMDBService {
+  rpc GetMovieByID(GetMovieByIDRequest) returns (GetMovieByIDResponse) {}
+  rpc SearchMovies(SearchMoviesRequest) returns (SearchMoviesResponse) {}
+}
+
+message GetMovieByIDRequest {
+  string id = 1;
+}
+
+message GetMovieByIDResponse {
+  string id = 1;
+  string title = 2;
+  string year = 3;
+  string rated = 4;
+  string genre = 5;
+  string plot = 6;
+  string director = 7;
+  repeated string actors = 8;
+  string language = 9;
+  string country = 10;
+  string type = 11;
+  string poster_url = 12;
+}
+
+message SearchMoviesRequest {
+  string query = 1;
+  string type = 2;
+  uint64 page = 3;
+}
+
+message SearchMoviesResponse {
+  repeated MovieResult movies = 1;
+  uint64 total_results = 2;
+}
+
+message MovieResult {
+  string id = 1;
+  string title = 2;
+  string year = 3;
+  string type = 4;
+  string poster_url = 5;
+}
